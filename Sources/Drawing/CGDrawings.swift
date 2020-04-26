@@ -1,5 +1,5 @@
-extension Array where Element == CGDrawing {
-    
+extension Array: CGDrawing, CustomPlaygroundDisplayConvertible where Element == CGDrawing {
+
     @inlinable public var drawing: CGDrawing { self }
     
     @inlinable public func draw(with pencil: CGPencil) {

@@ -40,3 +40,49 @@ extension CGMutablePath: CGPencil {
     }
 }
 
+#if canImport(AppKit)
+
+import AppKit 
+
+extension CGPath: CustomPlaygroundDisplayConvertible {
+
+    public var playgroundDescription: Any {
+        let o = CAShapeLayer()
+        o.fillRule = .evenOdd
+        o.backgroundColor = .clear
+        o.strokeColor = NSColor.systemBlue.cgColor
+        o.fillColor = NSColor.systemBlue.withAlphaComponent(0.2).cgColor
+        o.lineWidth = 1
+        o.path = self
+        o.fitBoundsToPath()
+        return o.playgroundDescription
+    }
+}
+
+extension CAShapeLayer: CustomPlaygroundDisplayConvertible {
+    
+    public var playgroundDescription: Any {
+        guard frame.size.area > 0 else { return "Zero area \(type(of: self))" }
+        let view = NSView(frame: frame)
+        let base = CALayer()
+        view.layer = base
+        base.addSublayer(self)
+        return view
+    }
+}
+
+extension CAShapeLayer {
+    
+    func fitBoundsToPath() {
+        guard let path = path else { return }
+        var box = path.boundingBoxOfPath
+        let padding = max(lineWidth, miterLimit)
+        box.size += padding * 2
+        box.origin -= padding
+        bounds = box
+        anchorPoint = .zero
+    }
+}
+#else
+
+#endif
