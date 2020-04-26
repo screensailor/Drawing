@@ -49,4 +49,8 @@ extension CGTransformed: CGDrawing {
     @inlinable public func draw(with pencil: CGPencil) {
         pencil.draw(drawing, using: transform)
     }
+    
+    @inlinable public var debugDescription: String {
+        "\(CGTransformed.self)(drawing: \(drawing), transform: \(transform))"
+    }
 }

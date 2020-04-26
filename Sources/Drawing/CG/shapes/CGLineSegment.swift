@@ -79,7 +79,11 @@ extension CGLineSegment {
 
 extension CGLineSegment: CGDrawing {
     
-    public func draw(with pencil: CGPencil) {
+    @inlinable public func draw(with pencil: CGPencil) {
         pencil.draw(.init(start, [end], closed: false))
+    }
+    
+    @inlinable public var debugDescription: String {
+        "\(CGLineSegment.self)(start: \(start), end: \(end))"
     }
 }

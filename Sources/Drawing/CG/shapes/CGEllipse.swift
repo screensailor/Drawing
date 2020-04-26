@@ -43,7 +43,7 @@ extension CGEllipse {
 extension CGEllipse {
 
     @inlinable public var size: CGSize {
-        get{ CGSize(radius) }
+        get{ CGSize(radius) * 2 }
         set{ (xRadius, yRadius) = (newValue / 2).tuple }
     }
 
@@ -70,7 +70,11 @@ extension CGEllipse {
 
 extension CGEllipse: CGDrawing {
     
-    public func draw(with pencil: CGPencil) {
+    @inlinable public func draw(with pencil: CGPencil) {
         pencil.draw(self)
+    }
+    
+    @inlinable public var debugDescription: String {
+        "\(CGEllipse.self)(center: \(center), radius: \(radius))"
     }
 }

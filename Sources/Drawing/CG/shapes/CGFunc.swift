@@ -85,8 +85,12 @@ extension CGFunc {
 
 extension CGFunc: CGDrawing {
     
-    public func draw(with pencil: CGPencil) {
+    @inlinable public func draw(with pencil: CGPencil) {
         _ = try? pencil.draw(poligon())
+    }
+    
+    @inlinable public var debugDescription: String {
+        "\(CGFunc.self)(plane: \(plane), scale: \(scale), stride: \(stride), range: \(range))"
     }
 }
 

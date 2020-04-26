@@ -113,7 +113,11 @@ extension CGPolygonalChain {
 
 extension CGPolygonalChain: CGDrawing {
     
-    public func draw(with pencil: CGPencil) {
+    @inlinable public func draw(with pencil: CGPencil) {
         pencil.draw(self)
+    }
+    
+    @inlinable public var debugDescription: String {
+        "\(CGPolygonalChain.self)(vertices: \(vertices), closed: \(isClosed))"
     }
 }

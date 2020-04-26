@@ -1,7 +1,7 @@
 @_exported import CoreGraphics
 @_exported import Space
 
-public protocol CGDrawing: CustomPlaygroundDisplayConvertible {
+public protocol CGDrawing: CustomPlaygroundDisplayConvertible, CustomDebugStringConvertible {
     func draw(with pencil: CGPencil)
 }
 
@@ -11,7 +11,7 @@ extension CGDrawing {
         #if canImport(AppKit)
         return path().playgroundDescription
         #else
-        return "TODO" + here()
+        return debugDescription
         #endif
     }
 }

@@ -4,5 +4,9 @@ public struct CGVoid: Codable, Equatable {
 
 extension CGVoid: CGDrawing {
     
-    public func draw(with pencil: CGPencil) {}
+    @inlinable public func draw(with pencil: CGPencil) {}
+    
+    @inlinable public var debugDescription: String {
+        "\(CGVoid.self)"
+    }
 }

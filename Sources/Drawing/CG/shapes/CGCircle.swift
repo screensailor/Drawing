@@ -54,7 +54,11 @@ extension CGCircle {
 
 extension CGCircle: CGDrawing {
     
-    public func draw(with pencil: CGPencil) {
+    @inlinable public func draw(with pencil: CGPencil) {
         pencil.draw(ellipse)
+    }
+    
+    @inlinable public var debugDescription: String {
+        "\(CGCircle.self)(center: \(center), radius: \(radius))"
     }
 }

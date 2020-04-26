@@ -26,7 +26,11 @@ extension CGStroke {
 
 extension CGStroke: CGDrawing {
     
-    public func draw(with pencil: CGPencil) {
+    @inlinable public func draw(with pencil: CGPencil) {
         pencil.draw(self)
+    }
+    
+    @inlinable public var debugDescription: String {
+        "\(CGStroke.self)(start: \(start), moves: \(moves), closed: \(isClosed))"
     }
 }

@@ -144,7 +144,7 @@ extension CGRect {
 
 extension CGRect: CGDrawing {
     
-    public func draw(with pencil: CGPencil) {
+    @inlinable public func draw(with pencil: CGPencil) {
         pencil.draw(self)
     }
 }
