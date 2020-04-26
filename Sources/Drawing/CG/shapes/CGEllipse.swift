@@ -57,8 +57,8 @@ extension CGEllipse {
 
     @inlinable public func point(at angle: CGFloat) -> CGPoint {
         CGPoint(
-            x: center.x + xRadius * angle.cos(),
-            y: center.y + yRadius * angle.sin()
+            x: center.x + xRadius * cos(angle),
+            y: center.y + yRadius * sin(angle)
         )
     }
 
