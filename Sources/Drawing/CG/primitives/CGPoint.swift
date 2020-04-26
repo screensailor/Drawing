@@ -1,17 +1,27 @@
-extension CGPoint: PointInSpace {
-    public typealias D = CGFloat
+extension CGPoint: Real2D {
+    @inlinable public var tuple: (CGFloat, CGFloat) { (x, y) }
+    @inlinable public init(_ tuple: (CGFloat, CGFloat)) { self.init(x: tuple.0, y: tuple.1) }
+}
+
+extension CGPoint {
+    @inlinable public func angle(to other: Self) -> CGFloat { (other - self).direction() }
+    @inlinable public func distance(to other: Self) -> CGFloat { (other - self).magnitude() }
+}
+
+extension CGPoint {
+    
+    @inlinable public func point(at angle: CGFloat, distance: CGFloat) -> CGPoint {
+        .init(x: cos(angle) * distance + x, y: sin(angle) * distance + y)
+    }
+    
+    public mutating func apply(_ t: CGAffineTransform) {
+        self = self.applying(t)
+    }
 }
 
 extension CGPoint {
     @inlinable public func circle(radius: CGFloat) -> CGCircle { .init(center: self, radius: radius) }
     @inlinable public func dot(radius: CGFloat = 1) -> CGCircle { circle(radius: radius) }
-}
-
-extension CGPoint {
-    
-    public mutating func apply(_ t: CGAffineTransform) {
-        self = self.applying(t)
-    }
 }
 
 extension Sequence where Element == CGPoint {

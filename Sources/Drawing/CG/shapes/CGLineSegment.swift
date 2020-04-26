@@ -1,9 +1,9 @@
-public struct CGLine: Codable, Equatable {
+public struct CGLineSegment: Codable, Equatable {
     public var start: CGPoint
     public var end: CGPoint
 }
 
-extension CGLine {
+extension CGLineSegment {
     
     public init(from start: CGPoint, to end: CGPoint) {
         self.start = start
@@ -11,7 +11,7 @@ extension CGLine {
     }
 }
 
-extension CGLine {
+extension CGLineSegment {
     @inlinable public func angle() -> CGFloat { start.angle(to: end) }
     @inlinable public func length() -> CGFloat { start.distance(to: end) }
     @inlinable public func slope() -> CGFloat { (end.y - start.y) / (end.x - start.x) }
@@ -19,9 +19,9 @@ extension CGLine {
     @inlinable public func yIntercept() -> CGFloat { end.y - slope() * end.x }
 }
 
-extension CGLine {
+extension CGLineSegment {
     
-    public func intersection(with other: CGLine) -> CGPoint? {
+    public func intersection(with other: CGLineSegment) -> CGPoint? {
         let (a, b, c, d) = (slope(), yIntercept(), other.slope(), other.yIntercept())
         let x = (d - b) / (a - c)
         let y = a * x + b
@@ -36,14 +36,14 @@ extension CGLine {
     }
 }
 
-extension CGLine {
+extension CGLineSegment {
     
-    @inlinable public func applying(_ t: CGAffineTransform) -> CGLine {
+    @inlinable public func applying(_ t: CGAffineTransform) -> CGLineSegment {
         .init(from: start.applying(t), to: end.applying(t))
     }
 }
 
-extension CGLine {
+extension CGLineSegment {
     
     @inlinable public func reflect<Points>(_ points: Points) -> [CGPoint]
         where Points: Sequence, Points.Element == CGPoint
@@ -74,5 +74,12 @@ extension CGLine {
             c: m2, d: -m1,
             tx: -2 * s * c / b, ty: 2 * c / b
         )
+    }
+}
+
+extension CGLineSegment: CGDrawing {
+    
+    public func draw(with pencil: CGPencil) {
+        pencil.draw(.init(start, [end], closed: false))
     }
 }

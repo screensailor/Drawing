@@ -42,11 +42,7 @@ extension CGPolygonalChain: RangeReplaceableCollection, RandomAccessCollection {
 extension CGPolygonalChain {
     
     @inlinable public func bounds() throws -> CGRect { try .init(containing: vertices) }
-    
-//    public func scaled(toFit size: CGSize) -> CGPolygonalChain {
-//        // TODO:
-//    }
-    
+        
     public func scaled(toFit frame: CGRect) -> CGPolygonalChain {
         guard let bounds = try? bounds() else { return [] }
         let scale = (frame.size / bounds.size).min
@@ -69,10 +65,10 @@ extension CGPolygonalChain {
         return vertices.dropFirst().reduce(first, +) / count.cg
     }
 
-    public func lines() -> [CGLine] {
-        var o = zip(self, dropFirst()).map{ CGLine(from: $0, to: $1) }
+    public func lines() -> [CGLineSegment] {
+        var o = zip(self, dropFirst()).map{ CGLineSegment(from: $0, to: $1) }
         if isClosed, count > 1, let first = vertices.first, let last = vertices.last {
-            o.append(CGLine(from: last, to: first))
+            o.append(CGLineSegment(from: last, to: first))
         }
         return o
     }
@@ -112,5 +108,12 @@ extension CGPolygonalChain {
         where Points: Collection, Points.Element == CGPoint
     {
         .init(convexHullContaining: vertices + points)
+    }
+}
+
+extension CGPolygonalChain: CGDrawing {
+    
+    public func draw(with pencil: CGPencil) {
+        pencil.draw(self)
     }
 }

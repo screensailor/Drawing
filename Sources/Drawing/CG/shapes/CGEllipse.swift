@@ -1,4 +1,4 @@
-public struct CGEllipse: EllipseInSpace, Codable, Equatable {
+public struct CGEllipse: Codable, Equatable {
 
     public var center: CGPoint
     public var xRadius: CGFloat
@@ -29,6 +29,12 @@ extension CGEllipse {
         self.yRadius = size.height / 2
     }
     
+    public init(center: (x: CGFloat, y: CGFloat), radius: (x: CGFloat, y: CGFloat)) {
+        self.center = .init(center)
+        self.xRadius = radius.x
+        self.yRadius = radius.y
+    }
+
     public init(frame: CGRect) {
         self.init(center: frame.center, size: frame.size)
     }
@@ -59,5 +65,12 @@ extension CGEllipse {
     @inlinable public func points(count: Int) -> [CGPoint] {
         guard count > 0 else { return [] }
         return (0..<count).map{ point(at: 2 * $0.π / count.cg) }
+    }
+}
+
+extension CGEllipse: CGDrawing {
+    
+    public func draw(with pencil: CGPencil) {
+        pencil.draw(self)
     }
 }

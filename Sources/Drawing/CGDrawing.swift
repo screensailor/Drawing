@@ -3,25 +3,23 @@
 
 #if !canImport(AppKit)
 
-public protocol Drawing {
-    
-    func draw<Paper>(on paper: Paper) where Paper: DrawingPaper
+public protocol CGDrawing {
+    func draw(with pencil: CGPencil)
 }
 
-extension Array: Drawing where Element == Drawing {}
+extension Array: CGDrawing where Element == CGDrawing {}
 
 #else
 
 import AppKit
 
-public protocol Drawing: CustomPlaygroundDisplayConvertible {
-    
-    func draw<Paper>(on paper: Paper) where Paper: DrawingPaper
+public protocol CGDrawing: CustomPlaygroundDisplayConvertible {
+    func draw(with pencil: CGPencil)
 }
 
-extension Array: Drawing, CustomPlaygroundDisplayConvertible where Element == Drawing {}
+extension Array: CGDrawing, CustomPlaygroundDisplayConvertible where Element == CGDrawing {}
 
-extension Drawing {
+extension CGDrawing {
     
     public var playgroundDescription: Any {
         if #available(OSX 10.13, *) {

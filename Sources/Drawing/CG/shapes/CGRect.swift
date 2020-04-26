@@ -34,8 +34,8 @@ extension CGRect {
 }
 
 extension CGRect {
-    @inlinable public var xAxis: CGLine { .init(from: .init(x: minX, y: midY), to: .init(x: maxX, y: midY)) }
-    @inlinable public var yAxis: CGLine { .init(from: .init(x: midX, y: minY), to: .init(x: midX, y: maxY)) }
+    @inlinable public var xAxis: CGLineSegment { .init(from: .init(x: minX, y: midY), to: .init(x: maxX, y: midY)) }
+    @inlinable public var yAxis: CGLineSegment { .init(from: .init(x: midX, y: minY), to: .init(x: midX, y: maxY)) }
 }
 
 extension CGRect {
@@ -139,5 +139,12 @@ extension CGRect {
             origin: origin + size * CGPoint(x: col.cg, y: row.cg),
             size: size
         )
+    }
+}
+
+extension CGRect: CGDrawing {
+    
+    public func draw(with pencil: CGPencil) {
+        pencil.draw(self)
     }
 }

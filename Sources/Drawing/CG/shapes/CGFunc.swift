@@ -83,6 +83,13 @@ extension CGFunc {
     }
 }
 
+extension CGFunc: CGDrawing {
+    
+    public func draw(with pencil: CGPencil) {
+        _ = try? pencil.draw(poligon())
+    }
+}
+
 /*
  See:
  CGFunction.init(
