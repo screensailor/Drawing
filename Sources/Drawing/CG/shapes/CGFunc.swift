@@ -1,4 +1,4 @@
-public struct CGFunc { // TODO: Func: AdditiveArithmetic protocol instead! - see Milos/Fun.swift
+public struct CGFunc { // TODO: an AdditiveArithmetic protocol instead! - see Milos/Fun.swift
     public var plane: Plane
     public var scale: CGFloat
     public var stride: CGFloat
