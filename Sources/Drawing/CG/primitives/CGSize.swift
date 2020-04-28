@@ -9,6 +9,14 @@ extension CGSize {
 
 extension CGSize {
     @inlinable public var area: CGFloat { width * height }
+    @inlinable public var isSquare: Bool { width.abs == height.abs }
+    @inlinable public var isVertical: Bool { width.abs < height.abs }
+    @inlinable public var isHorizontal: Bool { width.abs > height.abs }
+}
+
+extension CGSize {
+    @inlinable public func scaled(toFit other: CGSize) -> CGSize { self * scale(toFit: other) }
+    @inlinable public func scale(toFit other: CGSize) -> CGFloat { (other / self).min }
 }
 
 extension CGSize {

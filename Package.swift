@@ -9,9 +9,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/screensailor/Space.git", .branch("master")),
-        .package(url: "https://github.com/screensailor/Peek.git", .branch("master")),
     ],
     targets: [
-        .target(name: "Drawing", dependencies: ["Peek", "Space"]),
+        .target(name: "Drawing", dependencies: ["Space"]),
     ]
 )
