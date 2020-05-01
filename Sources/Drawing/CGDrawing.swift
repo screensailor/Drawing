@@ -1,4 +1,5 @@
 @_exported import CoreGraphics
+@_exported import NamedPoint
 @_exported import Space
 
 public protocol CGDrawing: CustomPlaygroundDisplayConvertible, CustomDebugStringConvertible {
