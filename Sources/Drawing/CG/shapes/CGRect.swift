@@ -28,6 +28,7 @@ extension CGRect {
 }
 
 extension CGRect {
+    @inlinable public var center: CGPoint { origin + size / 2 }
     @inlinable public var incircle: CGCircle { .init(center: center, radius: size.min / 2) } // TODO: alignment optioin
     @inlinable public var inellipse: CGEllipse { .init(center: center, radius: (width / 2, height / 2)) }
 }

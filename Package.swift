@@ -8,12 +8,11 @@ let package = Package(
         .library(name: "Drawing", targets: ["Drawing"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/ollieatkinson/NamedPoint.git", .branch("master")),
         .package(url: "https://github.com/screensailor/Space.git", .branch("master")),
         .package(url: "https://github.com/screensailor/Hope.git", .branch("master")),
     ],
     targets: [
-        .target(name: "Drawing", dependencies: ["Space", "NamedPoint"]),
+        .target(name: "Drawing", dependencies: ["Space"]),
         .testTarget(name: "DrawingTests", dependencies: ["Drawing", "Hope"]),
     ]
 )
