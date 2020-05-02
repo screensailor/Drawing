@@ -44,7 +44,7 @@ extension CGCircle {
     }
     
     @inlinable public func points(count: Int, startingFrom angle: CGFloat = 0) -> [CGPoint] {
-        count > 0 ? stride(from: angle, to: angle + 2.π, by: 2.π / count.cg).map{ point(at: $0) } : []
+        count > 0 ? stride(from: angle, to: angle + 2.π, by: 2.π / count.cg).prefix(count).map{ point(at: $0) } : []
     }
     
     @inlinable public func randomPoint(in range: ClosedRange<CGFloat> = 0 ± 1.π) -> CGPoint {
