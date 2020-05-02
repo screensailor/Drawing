@@ -20,6 +20,11 @@ extension CGSize {
 }
 
 extension CGSize {
+    @inlinable public func rectangle(center: CGPoint = .zero) -> CGRect { .init(center: center, size: self) }
+    @inlinable public func rectangle(origin: CGPoint) -> CGRect { .init(origin: origin, size: self) }
+}
+
+extension CGSize {
     
     @inlinable public func randomPoint() -> CGPoint {
         .init(

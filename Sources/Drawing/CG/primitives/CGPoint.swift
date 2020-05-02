@@ -24,6 +24,17 @@ extension CGPoint {
     @inlinable public func dot(radius: CGFloat = 1) -> CGCircle { circle(radius: radius) }
 }
 
+extension CGPoint {
+    
+    @inlinable public func rectangle<Anchor>(size: CGSize, anchor: Anchor) -> CGRect where Anchor: Real2D, Anchor.D == CGFloat {
+        .init(origin: self - size * anchor, size: size)
+    }
+    
+    @inlinable public func rectangle(size: CGSize) -> CGRect {
+        rectangle(size: size, anchor: CGPoint.unit / 2)
+    }
+}
+
 extension Sequence where Element == CGPoint {
     
     @inlinable public func dots(radius: CGFloat = 1) -> [CGCircle] {
