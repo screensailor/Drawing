@@ -52,6 +52,20 @@ extension CGFloat {
     @inlinable public func signed(as other: CGFloat) -> CGFloat { copysign(self, other) }
 }
 
+extension CGFloat {
+    
+    @inlinable public func random(withinDistance max: CGFloat, pow: CGFloat = 2) -> CGFloat {
+        random(withinDistance: max, by: { $0.pow(pow) })
+    }
+}
+
 extension CGFloat: CustomDebugStringConvertible {
     @inlinable public var debugDescription: String { description }
+}
+
+extension CGFloat {
+    
+    public static func ± (l: CGFloat, r: (max: CGFloat, pow: CGFloat)) -> CGFloat {
+        l.random(withinDistance: r.max, by: { $0.pow(r.pow) })
+    }
 }
