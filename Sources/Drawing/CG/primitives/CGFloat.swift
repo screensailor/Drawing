@@ -65,7 +65,19 @@ extension CGFloat: CustomDebugStringConvertible {
 
 extension CGFloat {
     
-    public static func ± (l: CGFloat, r: (max: CGFloat, pow: CGFloat)) -> CGFloat {
+    @inlinable public static func ± (l: CGFloat, r: (max: CGFloat, pow: CGFloat)) -> CGFloat {
         l.random(withinDistance: r.max, by: { $0.pow(r.pow) })
+    }
+    
+    @inlinable public static func ± (l: CGFloat, r: (max: CGFloat, pow: CGFloat, range: PartialRangeFrom<CGFloat>)) -> CGFloat {
+        (l ± (r.max, r.pow)).clamped(to: r.range)
+    }
+    
+    @inlinable public static func ± (l: CGFloat, r: (max: CGFloat, pow: CGFloat, range: PartialRangeUpTo<CGFloat>)) -> CGFloat {
+        (l ± (r.max, r.pow)).clamped(to: r.range)
+    }
+    
+    @inlinable public static func ± (l: CGFloat, r: (max: CGFloat, pow: CGFloat, range: ClosedRange<CGFloat>)) -> CGFloat {
+        (l ± (r.max, r.pow)).clamped(to: r.range)
     }
 }
