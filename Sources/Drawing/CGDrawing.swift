@@ -1,6 +1,3 @@
-@_exported import CoreGraphics
-@_exported import Space
-
 public protocol CGDrawing: CustomPlaygroundDisplayConvertible, CustomDebugStringConvertible {
     func draw(with pencil: CGPencil)
 }

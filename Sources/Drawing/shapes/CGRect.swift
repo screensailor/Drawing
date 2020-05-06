@@ -41,7 +41,7 @@ extension CGRect {
 extension CGRect {
     
     public func padded(by padding: CGFloat) -> CGRect { // TODO: use a dedicated offsets type
-        .init(origin: origin - padding, size: size + 2 * padding)
+        .init(center: center, size: size + 2 * padding)
     }
 }
 

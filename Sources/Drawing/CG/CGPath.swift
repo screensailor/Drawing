@@ -22,8 +22,8 @@ extension CGMutablePath: CGPencil {
         if o.isClosed { closeSubpath() }
     }
     
-    public func draw(_ drawing: CGDrawing, using t: CGAffineTransform) {
-        addPath(drawing.path(), transform: t)
+    public func draw(_ o: CGDrawing, using t: CGAffineTransform = .identity) {
+        addPath(o.path(), transform: t)
     }
     
     public func draw(_ o: CGPolygonalChain) {
@@ -42,7 +42,7 @@ extension CGMutablePath: CGPencil {
 
 #if canImport(AppKit)
 
-import AppKit 
+import AppKit
 
 extension CGPath: CustomPlaygroundDisplayConvertible {
 
@@ -83,6 +83,4 @@ extension CAShapeLayer {
         anchorPoint = .zero
     }
 }
-#else
-
 #endif

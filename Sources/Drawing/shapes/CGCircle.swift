@@ -34,6 +34,10 @@ extension CGCircle {
     @inlinable public func scaled(to scale: CGFloat) -> CGCircle {
         .init(center: center, radius: radius * scale)
     }
+    
+    @inlinable public func resized(by diameterDifference: CGFloat) -> CGCircle {
+        .init(center: center, radius: radius - diameterDifference / 2)
+    }
 
     @inlinable public func contains(_ point: CGPoint) -> Bool {
         point.distance(to: center) <= radius
