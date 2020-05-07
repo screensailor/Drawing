@@ -68,7 +68,7 @@ extension CGLineSegment {
             return CGAffineTransform(
                 a: -1, b: 0,
                 c: 0, d: 1,
-                tx: 2 * end.x, ty: -0.5
+                tx: 2 * end.x, ty: 0
             )
         }
         let c = yIntercept()
