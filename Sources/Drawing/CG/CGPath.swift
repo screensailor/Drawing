@@ -40,6 +40,19 @@ extension CGMutablePath: CGPencil {
     }
 }
 
+extension CGPath {
+    
+    public func applying(_ t: CGAffineTransform) -> CGPath {
+        let o = CGMutablePath()
+        o.addPath(self, transform: t)
+        return o
+    }
+    
+    public func fitting(into bounds: CGRect) -> CGPath {
+        applying(boundingBoxOfPath.transform(to: bounds))
+    }
+}
+
 #if canImport(AppKit)
 
 import AppKit

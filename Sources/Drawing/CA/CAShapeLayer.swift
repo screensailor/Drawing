@@ -36,7 +36,7 @@ extension CAShapeLayer {
     @available(OSX 10.13, iOS 11.0, *)
     public func image(scale: CGFloat) throws -> CGImage {
         let c = try CGContext.rgb(
-            preferredSize: path?.boundingBoxOfPath.size ?? .zero,
+            frame: path?.boundingBoxOfPath ?? .zero,
             padding: [lineWidth, miterLimit, shadowOffset.max + shadowRadius].max() ?? 0,
             scale: scale
         )

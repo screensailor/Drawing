@@ -40,6 +40,46 @@ extension CGContext {
 
 extension CGContext {
     
+    @inlinable public static func rgb(
+        size: CGSize,
+        padding: CGFloat = 0,
+        scale: CGFloat
+    ) throws -> CGContext {
+        try rgb(frame: size.rectangle(origin: .zero), padding: .init(square: padding), scale: scale)
+    }
+    
+    @inlinable public static func rgb(
+        size: CGSize,
+        padding: CGSize,
+        scale: CGFloat
+    ) throws -> CGContext {
+        return try rgb(frame: size.rectangle(origin: .zero), padding: padding, scale: scale)
+    }
+    
+    @inlinable public static func rgb(
+        frame: CGRect,
+        padding: CGFloat = 0,
+        scale: CGFloat
+    ) throws -> CGContext {
+        try rgb(frame: frame, padding: .init(square: padding), scale: scale)
+    }
+    
+    @inlinable public static func rgb(
+        frame: CGRect,
+        padding: CGSize,
+        scale: CGFloat
+    ) throws -> CGContext {
+        let bounds = CGRect(
+            origin: .zero,
+            size: (frame.size + padding * 2) * scale
+        ).integral
+        let o = try rgb(width: bounds.size.width.i, height: bounds.size.height.i)
+        o.scaleBy(x: scale, y: scale)
+        let t = padding - frame.origin
+        o.translateBy(x: t.width, y: t.height)
+        return o
+    }
+
     @inlinable public static func rgb(width: Int, height: Int) throws -> CGContext {
         return try CGContext(
             data: nil,
@@ -51,28 +91,5 @@ extension CGContext {
             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
         )
         .or(throw: "⚠️ Could not create CGContext(width: \(width), height: \(height)".error())
-    }
-    
-    @inlinable public static func rgb(
-        preferredSize: CGSize,
-        padding: CGFloat = 0,
-        scale: CGFloat = 1
-    ) throws -> CGContext {
-        try rgb(preferredSize: preferredSize, padding: .init(square: padding), scale: scale)
-    }
-    
-    @inlinable public static func rgb(
-        preferredSize: CGSize,
-        padding: CGSize,
-        scale: CGFloat = 1
-    ) throws -> CGContext {
-        let bounds = CGRect(
-            origin: .zero,
-            size: (preferredSize + padding * 2) * scale
-        ).integral
-        let o = try rgb(width: bounds.size.width.i, height: bounds.size.height.i)
-        o.scaleBy(x: scale, y: scale)
-        o.translateBy(x: padding.width, y: padding.height)
-        return o
     }
 }
