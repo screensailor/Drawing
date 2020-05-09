@@ -63,7 +63,7 @@ extension CGFloat: CustomDebugStringConvertible {
     @inlinable public var debugDescription: String { description }
 }
 
-extension CGFloat {
+extension CGFloat { // TODO: generalse in Space
     
     @inlinable public static func ± (l: CGFloat, r: (max: CGFloat, pow: CGFloat)) -> CGFloat {
         l.random(withinDistance: r.max, by: { $0.pow(r.pow) })
@@ -79,5 +79,54 @@ extension CGFloat {
     
     @inlinable public static func ± (l: CGFloat, r: (max: CGFloat, pow: CGFloat, range: ClosedRange<CGFloat>)) -> CGFloat {
         (l ± (r.max, r.pow)).clamped(to: r.range)
+    }
+}
+
+extension CGFloat { // TODO: generalse in Space
+    
+    @inlinable public static func ±= (l: inout CGFloat, r: (max: CGFloat, pow: CGFloat)) {
+        l = l ± r
+    }
+    
+    @inlinable public static func ±= (l: inout CGFloat, r: (max: CGFloat, pow: CGFloat, range: PartialRangeFrom<CGFloat>)) {
+        l = l ± r
+    }
+    
+    @inlinable public static func ±= (l: inout CGFloat, r: (max: CGFloat, pow: CGFloat, range: PartialRangeUpTo<CGFloat>)) {
+        l = l ± r
+    }
+    
+    @inlinable public static func ±= (l: inout CGFloat, r: (max: CGFloat, pow: CGFloat, range: ClosedRange<CGFloat>)) {
+        l = l ± r
+    }
+}
+
+extension CGFloat { // TODO: generalse in Space
+    
+    @inlinable public static func += (l: inout CGFloat, r: (x: CGFloat, range: PartialRangeFrom<CGFloat>)) {
+        l = (l + r.x).clamped(to: r.range)
+    }
+    
+    @inlinable public static func += (l: inout CGFloat, r: (x: CGFloat, range: PartialRangeUpTo<CGFloat>)) {
+        l = (l + r.x).clamped(to: r.range)
+    }
+    
+    @inlinable public static func += (l: inout CGFloat, r: (x: CGFloat, range: ClosedRange<CGFloat>)) {
+        l = (l + r.x).clamped(to: r.range)
+    }
+}
+
+extension CGFloat { // TODO: generalse in Space
+    
+    @inlinable public static func -= (l: inout CGFloat, r: (x: CGFloat, range: PartialRangeFrom<CGFloat>)) {
+        l = (l - r.x).clamped(to: r.range)
+    }
+    
+    @inlinable public static func -= (l: inout CGFloat, r: (x: CGFloat, range: PartialRangeUpTo<CGFloat>)) {
+        l = (l - r.x).clamped(to: r.range)
+    }
+    
+    @inlinable public static func -= (l: inout CGFloat, r: (x: CGFloat, range: ClosedRange<CGFloat>)) {
+        l = (l - r.x).clamped(to: r.range)
     }
 }
