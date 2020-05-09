@@ -130,3 +130,33 @@ extension CGFloat { // TODO: generalse in Space
         l = (l - r.x).clamped(to: r.range)
     }
 }
+
+extension CGFloat { // TODO: generalse in Space
+    
+    @inlinable public static func *= (l: inout CGFloat, r: (x: CGFloat, range: PartialRangeFrom<CGFloat>)) {
+        l = (l * r.x).clamped(to: r.range)
+    }
+    
+    @inlinable public static func *= (l: inout CGFloat, r: (x: CGFloat, range: PartialRangeUpTo<CGFloat>)) {
+        l = (l * r.x).clamped(to: r.range)
+    }
+    
+    @inlinable public static func *= (l: inout CGFloat, r: (x: CGFloat, range: ClosedRange<CGFloat>)) {
+        l = (l * r.x).clamped(to: r.range)
+    }
+}
+
+extension CGFloat { // TODO: generalse in Space
+    
+    @inlinable public static func /= (l: inout CGFloat, r: (x: CGFloat, range: PartialRangeFrom<CGFloat>)) {
+        l = (l / r.x).clamped(to: r.range)
+    }
+    
+    @inlinable public static func /= (l: inout CGFloat, r: (x: CGFloat, range: PartialRangeUpTo<CGFloat>)) {
+        l = (l / r.x).clamped(to: r.range)
+    }
+    
+    @inlinable public static func /= (l: inout CGFloat, r: (x: CGFloat, range: ClosedRange<CGFloat>)) {
+        l = (l / r.x).clamped(to: r.range)
+    }
+}
