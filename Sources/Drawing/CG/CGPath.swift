@@ -48,8 +48,12 @@ extension CGPath {
         return o
     }
     
+    public func transform(to bounds: CGRect) -> CGAffineTransform {
+        boundingBoxOfPath.transform(to: bounds)
+    }
+    
     public func fitting(into bounds: CGRect) -> CGPath {
-        applying(boundingBoxOfPath.transform(to: bounds))
+        applying(transform(to: bounds))
     }
 }
 
