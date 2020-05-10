@@ -1,5 +1,7 @@
 extension CGContext: CGPencil {
     
+    // TODO: rethink naming, since these `draw` methods only add paths
+    
     public func draw(_ o: CGStroke) {
         move(to: o.start)
         for o in o.moves {
