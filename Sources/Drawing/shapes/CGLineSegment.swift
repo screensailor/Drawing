@@ -1,4 +1,4 @@
-public struct CGLineSegment: Codable, Equatable {
+public struct CGLineSegment: LineSegmentInSpace, Codable, Equatable {
     public var start: CGPoint
     public var end: CGPoint
 }
@@ -8,38 +8,6 @@ extension CGLineSegment {
     public init(from start: CGPoint, to end: CGPoint) {
         self.start = start
         self.end = end
-    }
-}
-
-extension CGLineSegment {
-    @inlinable public func angle() -> CGFloat { start.angle(to: end) }
-    @inlinable public func length() -> CGFloat { start.distance(to: end) }
-    @inlinable public func slope() -> CGFloat { (end.y - start.y) / (end.x - start.x) }
-    @inlinable public func xIntercept() -> CGFloat { -yIntercept() / slope() }
-    @inlinable public func yIntercept() -> CGFloat { end.y - slope() * end.x }
-}
-
-extension CGLineSegment {
-    
-    public func intersection(with other: CGLineSegment) -> CGPoint? {
-        let (a, b, c, d) = (slope(), yIntercept(), other.slope(), other.yIntercept())
-        let x: CGFloat, s: CGFloat, i: CGFloat
-        switch (a.isFinite, c.isFinite) {
-        case (false, false): return nil
-        case (true, true): (x, s, i) = ((d - b) / (a - c), a, b)
-        case (false, true): (x, s, i) = (start.x, c, d)
-        case (true, false): (x, s, i) = (other.start.x, a, b)
-        }
-        let y = s * x + i
-        guard
-            x.isFinite, y.isFinite,
-            x.isBetween(start.x, and: end.x),
-            y.isBetween(start.y, and: end.y),
-            x.isBetween(other.start.x, and: other.end.x),
-            y.isBetween(other.start.y, and: other.end.y)
-            else
-        { return nil }
-        return .init(x: x, y: y)
     }
 }
 
