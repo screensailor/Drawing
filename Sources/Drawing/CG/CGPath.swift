@@ -49,7 +49,9 @@ extension CGPath {
     }
     
     public func transform(to bounds: CGRect) -> CGAffineTransform {
-        boundingBoxOfPath.transform(to: bounds)
+        let box = boundingBoxOfPath
+        guard box.size.area > 0 else { return .identity }
+        return box.transform(to: bounds)
     }
     
     public func fitting(into bounds: CGRect) -> CGPath {
