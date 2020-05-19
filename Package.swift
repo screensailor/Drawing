@@ -8,8 +8,8 @@ let package = Package(
         .library(name: "Drawing", targets: ["Drawing"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/screensailor/Space.git", .branch("master")),
-        .package(url: "https://github.com/screensailor/Hope.git", .branch("master")),
+        .package(url: "https://github.com/screensailor/Space.git", from: "0.1.0"),
+        .package(url: "https://github.com/screensailor/Hope.git", from: "0.1.0"),
     ],
     targets: [
         .target(name: "Drawing", dependencies: ["Space"]),
