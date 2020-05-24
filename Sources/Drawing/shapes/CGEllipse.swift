@@ -1,3 +1,5 @@
+import NamedPoint
+
 public struct CGEllipse: Codable, Equatable {
 
     public var center: CGPoint

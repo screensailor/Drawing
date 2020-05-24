@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Hope",
+        "repositoryURL": "https://github.com/screensailor/Hope.git",
+        "state": {
+          "branch": null,
+          "revision": "0ac73cd24da586a2669e5fc426fd0dc7f8e36b7c",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "NamedPoint",
+        "repositoryURL": "https://github.com/ollieatkinson/NamedPoint.git",
+        "state": {
+          "branch": null,
+          "revision": "1260a85bb823c27eaac8bbeac2c15b1a8928b81e",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "Peek",
+        "repositoryURL": "https://github.com/screensailor/Peek.git",
+        "state": {
+          "branch": null,
+          "revision": "bd3acb07b5208c123453ec604dc0161413cf2dd5",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "Space",
+        "repositoryURL": "https://github.com/screensailor/Space.git",
+        "state": {
+          "branch": null,
+          "revision": "d50d98c200f74d60407a58c5008033facbc49b46",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "swift-numerics",
+        "repositoryURL": "https://github.com/apple/swift-numerics.git",
+        "state": {
+          "branch": null,
+          "revision": "5dfc460876510988560170cee3702ab01b89587a",
+          "version": "0.0.5"
+        }
+      },
+      {
+        "package": "TrySwitch",
+        "repositoryURL": "https://github.com/screensailor/TrySwitch.git",
+        "state": {
+          "branch": null,
+          "revision": "68ac7d1532a199b31a2b171661b9a13a4b5d2c8f",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
