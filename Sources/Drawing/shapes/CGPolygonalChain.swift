@@ -41,10 +41,10 @@ extension CGPolygonalChain: RangeReplaceableCollection, RandomAccessCollection {
 
 extension CGPolygonalChain {
     
-    @inlinable public func bounds() throws -> CGRect { try .init(containing: vertices) }
+    @inlinable public func bounds() -> CGRect? { CGRect(containing: vertices) }
         
     public func scaled(toFit frame: CGRect) -> CGPolygonalChain {
-        guard let bounds = try? bounds() else { return [] }
+        guard let bounds = bounds() else { return [] }
         let scale = (frame.size / bounds.size).min
         guard scale.isFinite else { return .init(vertices: Array(repeating: frame.center, count: count), closed: isClosed) }
         let fc = frame.center, bc = bounds.center

@@ -79,10 +79,10 @@ extension CGRect {
 
 extension CGRect {
     
-    public init<Points>(containing points: Points) throws
+    public init?<Points>(containing points: Points)
         where Points: Collection, Points.Element == CGPoint
     {
-        guard let first = points.first else { throw "Cannot calculate the bounds of an set of points".error() }
+        guard let first = points.first else { return nil }
         var (min, max) = (first, first)
         for p in points {
             if p.x < min.x { min.x = p.x }
