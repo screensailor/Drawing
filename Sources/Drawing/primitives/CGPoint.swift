@@ -11,7 +11,7 @@ extension CGPoint {
         .init(x: cos(angle) * distance + x, y: sin(angle) * distance + y)
     }
     
-    public mutating func apply(_ t: CGAffineTransform) {
+    @inlinable public mutating func apply(_ t: CGAffineTransform) {
         self = self.applying(t)
     }
 }

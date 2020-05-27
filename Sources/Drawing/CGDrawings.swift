@@ -7,9 +7,9 @@ extension Array: CGDrawing, CustomPlaygroundDisplayConvertible where Element == 
     }
 }
 
-public func + (l: CGDrawing, r: CGDrawing) -> CGDrawing {
+public func + (l: CGDrawing, r: CGDrawing) -> [CGDrawing] {
     switch (l, r) {
-    case let (l as [CGDrawing], r as [CGDrawing]): return l + r
+    case let (l as [CGDrawing], r as [CGDrawing]): return [l, r]
     case let (l as [CGDrawing], r): return l + [r]
     case let (l, r as [CGDrawing]): return [l] + r
     case let (l, r): return [l, r]

@@ -28,7 +28,7 @@ extension CGRect {
 }
 
 extension CGRect {
-    @inlinable public var center: CGPoint { origin + size / 2 }
+    @inlinable public var center: CGPoint { get { origin + size / 2 } set { origin = newValue - size / 2 } }
     @inlinable public var incircle: CGCircle { .init(center: center, radius: size.min / 2) } // TODO: alignment optioin
     @inlinable public var inellipse: CGEllipse { .init(center: center, radius: (width / 2, height / 2)) }
 }
@@ -40,12 +40,16 @@ extension CGRect {
 
 extension CGRect {
     
-    public func padded(by padding: CGFloat) -> CGRect { // TODO: use a dedicated offsets type
+    @inlinable public func padded(by padding: CGFloat) -> CGRect { // TODO: use a dedicated offsets type
         .init(center: center, size: size + 2 * padding)
     }
 }
 
 extension CGRect {
+    
+    @inlinable public mutating func apply(_ t: CGAffineTransform) {
+        self = applying(t)
+    }
     
     @inlinable public func transform(to other: CGRect) -> CGAffineTransform {
         CGAffineTransform(translationX: other.origin.x, y: other.origin.y)
@@ -70,6 +74,10 @@ extension CGRect {
     
     @inlinable public func point<Anchor>(at anchor: Anchor) -> CGPoint where Anchor: Real2D, Anchor.D == CGFloat {
         (size * anchor + origin).cast()
+    }
+    
+    @inlinable public func point(at anchorX: CGFloat, _ anchorY: CGFloat) -> CGPoint {
+        point(at: CGPoint(x: anchorX, y: anchorY))
     }
 }
 
@@ -96,9 +104,7 @@ extension CGRect {
 
 extension CGRect {
     
-    public func tiles(rows: Int, cols: Int) throws -> UnfoldSequence<CGRect, Int> {
-        guard rows > 0 else { throw "Expected rows > 0, got: \(rows)".error() }
-        guard cols >= 0 else { throw "Expected cols >=0, got: \(cols)".error() }
+    public func tiles(rows: Int, cols: Int) -> UnfoldSequence<CGRect, Int> {
         return sequence(state: 0){ i in
             defer { i += 1 }
             guard i < rows * cols else { return nil }
