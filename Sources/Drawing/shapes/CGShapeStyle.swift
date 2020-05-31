@@ -16,6 +16,8 @@ public struct CGStrokeStyle: Codable, Equatable {
     
     public var dash: [CGFloat] = []
     public var dashPhase: CGFloat = 0
+    
+    public var glowWidth: CGFloat = 0
 
     public init() {}
 }
@@ -23,6 +25,8 @@ public struct CGStrokeStyle: Codable, Equatable {
 public struct CGFillStyle: Codable, Equatable {
 
     public var isEOFilled: Bool = false
+    
+    public var alpha: CGFloat = 0.2
 
     public init() {}
 }
