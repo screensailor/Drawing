@@ -40,8 +40,16 @@ extension CGMutablePath: CGPencil {
     }
 }
 
-extension CGPath {
+extension CGMutablePath {
     
+    public func after(_ ƒ: (Self) -> ()) -> Self {
+        ƒ(self)
+        return self
+    }
+}
+
+extension CGPath {
+
     public func applying(_ t: CGAffineTransform) -> CGPath {
         let o = CGMutablePath()
         o.addPath(self, transform: t)
